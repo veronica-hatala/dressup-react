@@ -13,7 +13,7 @@ $doll-height: 419px;
 $doll-width: 277px;
 
 #background {
-    display: none;
+    display: grid;
     grid-template-areas: 
         'doll decorate'
         'doll arrows';

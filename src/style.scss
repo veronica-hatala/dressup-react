@@ -18,3 +18,34 @@ $color-dark-purple: #a374d5;
 body {
     background: lightblue;
 }
+
+.intro-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    h1 {
+        font-family: cuteNotes, sans-serif;
+        color: purple;
+        font-size: 84px;
+        text-align: center;
+        word-spacing: -36px;
+        text-wrap: wrap;
+    }
+
+    .intro-button {
+        font-family: cute, sans-serif;
+        color: purple;
+        background: pink;
+        height: 75px;
+        width: 225px;
+        font-size: 45px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        &:hover {
+            color: pink;
+            background-color: purple;
+        }
+    }
+}

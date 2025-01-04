@@ -1,8 +1,18 @@
 import './style.scss';
 import React, { useState } from 'react';
 
-function App() {
+function IntroScreen({ onStart }) {
+  return (
+    <div id="container" class="intro-screen">
+      <h1>Dress Up Dolls</h1>
+      <button className="intro-button" onClick={onStart}>
+        Start Game
+      </button>
+    </div>
+  );
+}
 
+function PaperDoll() {
   const [dressupState, setDressupState] = useState({
     dress: {current: 0, total: 4},
     shoes: {current: 0, total: 2},  
@@ -72,6 +82,20 @@ function App() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function App() {
+  const [showIntro, setShowIntro] = useState(true);
+
+  return (
+    <div>
+      {showIntro ? (
+        <IntroScreen onStart={() => setShowIntro(false)} />
+      ) : (
+        <PaperDoll />
+      )}
     </div>
   );
 }

@@ -1,0 +1,180 @@
+#container{
+    margin: 50px auto;
+    width: 768px;
+    height: 32em;
+    background-color: $color-medium-purple;
+    border-radius: 20px;
+    border: 5px solid $color-yellow;
+    box-shadow: 0 0 20px 10px lightgoldenrodyellow;
+    font-family: cute, sans-serif;
+}
+
+$doll-height: 419px;
+$doll-width: 277px;
+
+#background {
+    display: none;
+    grid-template-areas: 
+        'doll decorate'
+        'doll arrows';
+    width: 768px;
+    height: 32em;
+    justify-content: center;
+    align-items: center;
+    grid-column-gap: 50px;
+}
+
+.paper-doll {
+    grid-area: doll;
+    position: relative;
+    width: $doll-width;
+    height: $doll-height;
+    &::before, &::after {
+        content: "";
+        display: block;
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        background: url(/assets/sparkle-svg.svg) no-repeat center/100%;
+
+    }
+    &::before {
+        left: -10px;
+        top: -30px;    
+    }
+    &::after {
+        right: 20px;
+        bottom: -25px;   
+    }
+}
+
+#body{
+    position: absolute;
+    width: $doll-width;
+    height: $doll-height;
+    background-image: url(/assets/body.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#dress, #shoes, #socks{
+    position:absolute;
+    width: $doll-width;
+    height: $doll-height;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#dress {
+    z-index: 3;
+}
+
+#socks {
+    z-index: 1;
+}
+
+#shoes {
+    z-index: 2;
+}
+
+$items: ("dress": 4, "shoes": 2, "socks": 2);
+
+@each $item, $total in $items {
+    @for $i from 1 through $total {
+        .#{$item}#{$i} {
+            background-image: url(/assets/#{$item}/#{$item}#{$i}.png);
+            background-size: 25%;
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+.decorate-label {
+    grid-area: decorate;
+    position: relative;
+    top: 35px;
+    text-align: center;
+    font-size: 46px;
+    color: purple;
+    font-family: cuteNotes, sans-serif;
+}
+
+.selection-arrows-container {
+    grid-area: arrows;
+    align-self: start;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    border: 1px solid pink;
+    border-radius: 3px;
+    padding: 25px;
+    justify-self: center;
+    &::before, &::after {
+        content: "";
+        display: block;
+        position: absolute;
+    }
+    &::before {
+        left: -27px;
+        top: -10px;
+        height: 50px;
+        width: 50px;
+        background: url(/assets/hearts-svg.svg) no-repeat center/100%;
+    }
+    &::after {
+        right: -25px;
+        top: -15px;
+        height: 40px;
+        width: 40px;
+        background: url(/assets/hearts2-svg.svg) no-repeat center/100%;     
+    }
+
+    .selection-arrows {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 175px;
+        .selection-arrow {
+            z-index: 10;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            border: none;
+            color: $color-dark-purple;
+        }
+        .previous-arrow {
+            transform: scaleX(-1);
+        }
+        .selection-label {
+            text-transform: capitalize;
+            color: purple;
+            letter-spacing: 2px;
+            font-size: 28px;        
+        }
+
+        &:last-child {
+            &::before, &::after {
+                content: "";
+                display: block;
+                position: absolute;
+            }
+
+            &::before {
+                left: -50px;
+                bottom: -45px;
+                height: 40px;
+                width: 40px;            
+                background: url(/assets/hearts2-svg.svg) no-repeat center/100%;
+            }
+            &::after {
+                right: -50px;
+                bottom: -45px;
+                height: 50px;
+                width: 50px;
+                background: url(/assets/hearts-svg.svg) no-repeat center/100%;      
+            }
+        }
+    }
+}
